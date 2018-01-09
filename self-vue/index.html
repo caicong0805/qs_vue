@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- vue renderer  app作为一个钩子，vue通过这个钩子进行渲染
+    template -> pre compile 
+    vue 运行的一个scope区域 -->
+    <!-- 2个花括号是占位符 正则可以去匹配 然后要进行实时的编译 他应该是一个node节点， -->
+    <div id="app"><h2>{{title}}</h2>
+        <input v-model="name">
+        <h1>{{name}}</h1>
+        <button v-on:click="clickMe">click me!</button>
+    </div>
+    <script src="./observer.js"></script>
+    <script src="./watcher.js"></script>
+    <script src="./compile.js"></script>
+    <script src="./vue.js"></script>
+    <script>
+        const vm =  new Vue({
+            el:'#app',
+            data:{
+                title:'hello world',
+                name:'canfoo'
+            },
+            methods:{
+                clickMe(){
+                    this.title = '你好';
+                }
+            },
+            mounted(){
+                setTimeout(() => {
+                    this.title = '吃了吗？'
+                }, 1000);
+                }
+        })
+    </script>
+</body>
+</html>
